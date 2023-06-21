@@ -1,0 +1,61 @@
+dice_game.rs:
+
+    Constants:
+        BOARD_SIZE: usize
+        MAX_DICE_IN_COLUMN: usize
+
+    struct Die:
+        value: u8
+
+    Methods in Die:
+        new(value: u8)
+        value()
+
+    struct Column:
+        dice: Vec<Die>
+
+    Methods in Column:
+        new()
+        is_full()
+        add_die(die: Die)
+        remove_dice(value: u8)
+        score()
+
+    struct Board:
+        columns: Vec<Column>
+
+    Methods in Board:
+        new()
+        is_full()
+        place_die(column_index: usize, die: Die)
+        remove_dice(column_index: usize, value: u8)
+        score()
+
+main.rs:
+
+    Modules:
+        dice_game
+        ai_agent
+        dqn_agent
+
+    Variables in main():
+        player1_board: Board
+        player2_board: Board
+        current_player: usize
+
+    Functions:
+        roll_die() -> u8
+        get_column_input(board: &Board) -> usize
+        print_board(board: &Board)
+
+dqn_agent.rs:
+
+    Constants:
+        LEARNING_RATE: f32
+        EPSILON: f32
+        GAMMA: f32
+        CAPACITY: usize
+        BATCH_SIZE: usize
+
+    Functions:
+        initialize_state(own_board: &Board, opponent_board: &Board, die: u8) -> Array1<f32>
